@@ -87,10 +87,10 @@ const AuthForm = ({ type }: { type: string }) => {
       <header className="flex flex-col gap-5 md:gap-8">
         <Link href="/" className="cursor-pointer flex items-center gap-1">
           <Image
-            src="/icons/logo.svg"
-            width={34}
-            height={34}
-            alt="Horizon logo"
+            src="/icons/logoD.svg"
+            width={50}
+            height={50}
+            alt="DBank logo"
           />
           <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
             Dbank
@@ -99,7 +99,11 @@ const AuthForm = ({ type }: { type: string }) => {
 
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
-            {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
+            {user
+              ? "Connectez votre compte"
+              : type === "sign-in"
+              ? "Sign In"
+              : "Sign Up"}
             <p className="text-16 font-normal text-gray-600">
               {user
                 ? "Connectez votre compte pour commencer"
@@ -122,21 +126,21 @@ const AuthForm = ({ type }: { type: string }) => {
                     <CustomInput
                       control={form.control}
                       name="firstName"
-                      label="First Name"
-                      placeholder="Enter your first name"
+                      label="Prénom"
+                      placeholder="Saisissez votre prénom"
                     />
                     <CustomInput
                       control={form.control}
                       name="lastName"
-                      label="Last Name"
-                      placeholder="Enter your first name"
+                      label="Nom"
+                      placeholder="Saisissez votre nom de famille"
                     />
                   </div>
                   <CustomInput
                     control={form.control}
                     name="address1"
-                    label="Address"
-                    placeholder="Enter your specific address"
+                    label="Adresse"
+                    placeholder="Votre adresse"
                   />
                   <CustomInput
                     control={form.control}
