@@ -8,27 +8,35 @@ import {
 import { useRouter } from "next/navigation";
 // import { createLinkToken, exchangePublicToken } from '@/lib/actions/user.actions';
 import Image from "next/image";
+import {
+  createLinkToken,
+  exchangePublicToken,
+} from "@/lib/actions/user.actions";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
 
   const [token, setToken] = useState("");
 
+  console.log("Liban 1", user);
+
   useEffect(() => {
     const getLinkToken = async () => {
-      // const data = await createLinkToken(user);
-      // setToken(data?.linkToken);
+      const data = await createLinkToken(user);
+      setToken(data?.linkToken);
     };
 
     getLinkToken();
   }, [user]);
 
+  console.log("Liban 1", user);
+
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {
-      //   await exchangePublicToken({
-      //     publicToken: public_token,
-      //     user,
-      //   })
+      await exchangePublicToken({
+        publicToken: public_token,
+        user,
+      });
 
       router.push("/");
     },
@@ -40,14 +48,14 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     onSuccess,
   };
 
-  // const { open, ready } = usePlaidLink(config);
+  const { open, ready } = usePlaidLink(config);
 
   return (
     <>
       {variant === "primary" ? (
         <Button
           onClick={() => open()}
-          //   disabled={!ready}
+          disabled={!ready}
           className="plaidlink-primary"
         >
           Connect bank
